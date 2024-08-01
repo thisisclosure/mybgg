@@ -288,6 +288,11 @@ class BGGClient:
                         xml.string(
                             "statistics/ratings/bayesaverage",
                             attribute="value",
+                            alias="bggrating"
+                        ),
+                        xml.string(
+                            "statistics/ratings/average",
+                            attribute="value",
                             alias="rating"
                         ),
                         xml.string("playingtime", attribute="value", alias="playing_time"),

@@ -128,7 +128,8 @@ function get_widgets(SETTINGS) {
         {label: 'Name', value: SETTINGS.algolia.index_name},
         {label: 'BGG Rank', value: SETTINGS.algolia.index_name + '_rank_ascending'},
         {label: 'Number of ratings', value: SETTINGS.algolia.index_name + '_numrated_descending'},
-        {label: 'Number of owners', value: SETTINGS.algolia.index_name + '_numowned_descending'}
+        {label: 'Number of owners', value: SETTINGS.algolia.index_name + '_numowned_descending'},
+        {label: 'Rating', value: SETTINGS.algolia.index_name + '_rating_descending'}  // New sorting option
       ]
     }),
     "clear": instantsearch.widgets.clearRefinements({

@@ -51,6 +51,7 @@ class Indexer:
                 mainIndex.name + '_rank_ascending',
                 mainIndex.name + '_numrated_descending',
                 mainIndex.name + '_numowned_descending',
+                mainIndex.name + '_rating_descending',  # New replica for rating
             ]
         })
 
@@ -62,6 +63,9 @@ class Indexer:
 
         replica_index = client.init_index(mainIndex.name + '_numowned_descending')
         replica_index.set_settings({'ranking': ['desc(numowned)']})
+
+        replica_index = client.init_index(mainIndex.name + '_rating_descending')
+        replica_index.set_settings({'ranking': ['desc(rating)']})  # New replica settings
 
     @staticmethod
     def todict(obj):
@@ -225,6 +229,9 @@ class Indexer:
 
             # Make sure description is not too long
             game["description"] = self._prepare_description(game["description"])
+
+            # Include the rating in the indexed data
+            game["rating"] = float(game["rating"]) if game["rating"] is not None else None
 
         self.index.save_objects(games)
 
